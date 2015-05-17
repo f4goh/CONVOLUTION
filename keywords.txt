@@ -1,0 +1,27 @@
+#######################################
+# Syntax Coloring Map For CONVOLUTION
+#######################################
+#######################################
+# Datatypes (KEYWORD1)
+#######################################
+
+Convolve	KEYWORD1
+CONVOLUTION	KEYWORD1
+
+#######################################
+# Methods and Functions (KEYWORD2)
+#######################################
+
+#convolution	KEYWORD2
+#pseudo_random	KEYWORD2
+#interleave	KEYWORD2
+#add_crc	KEYWORD2
+#check_crc	KEYWORD2
+#noise	KEYWORD2
+#size_buffer	KEYWORD2
+#crc	KEYWORD2
+#noise	KEYWORD2
+
+#######################################
+# Constants (LITERAL1)
+#######################################
