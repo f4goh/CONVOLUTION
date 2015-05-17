@@ -36,7 +36,8 @@ byte decoded[size_input];      //decoded data
 ```
 
 here is the results :
-
+```c++
+/*
 crc : 8A42
 46,34,47,4F,48,8A,42,0,      //last byte always 0 , just before 16 bits crc
 Data encoded :
@@ -57,10 +58,12 @@ Data input :
 Data decoded :
 46,34,47,4F,48,8A,42,0,
 Check crc : 1
+*/
+```
+Have fun with Viterbi <br>
+[Download PDF : Viterbi how to](http://users.ece.utexas.edu/~gerstl/ee382v-ics_f09/lectures/Viterbi.pdf) <br>
 
-Have fun with Viterbi
-[Download PDF : Viterbi how to](http://users.ece.utexas.edu/~gerstl/ee382v-ics_f09/lectures/Viterbi.pdf)
-To Understand pdf, take a look at the sample program downside without library
+To Understand pdf, take a look at the sample program downside without library <br>
 
 ```c++
 /***************************************
