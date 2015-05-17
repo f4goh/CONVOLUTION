@@ -63,7 +63,7 @@ Check crc : 1
 Have fun with Viterbi <br>
 [Download PDF : Viterbi how to](http://users.ece.utexas.edu/~gerstl/ee382v-ics_f09/lectures/Viterbi.pdf) <br>
 
-To Understand pdf, take a look at the sample program downside without library <br>
+To Understand pdf, take a look at the sample program downside (without library) <br>
 
 ```c++
 /***************************************
