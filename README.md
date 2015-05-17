@@ -1,5 +1,4 @@
-# CONVOLUTION
-Convolutional (Viterbi) Encoding and decoding library#
+#Convolutional (Viterbi) Encoding and decoding library#
 F4GOH Anthony f4goh@orange.fr <br>
 
 May 2015
