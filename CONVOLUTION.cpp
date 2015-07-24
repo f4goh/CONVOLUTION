@@ -2,7 +2,8 @@
  * CONVOLUTION Arduino library
  * Created 15/05/2015
  * Anthony LE CREN f4goh@orange.fr 
- * Modified
+ * Modified 24/07/2015
+ * fix bug data ptr upper than 32
  * BSD license, all text above must be included in any redistribution
  *
  * Instance :
@@ -28,7 +29,7 @@ CONVOLUTION::CONVOLUTION(){
  ********************************************************/
 
  
-void CONVOLUTION::convolution(byte *input, byte *output) {      //one byte imput, two bytes output
+void CONVOLUTION::convolution(byte *input, byte *output) {      //one byte input, two bytes output
    byte reg =0;
    int n,m;
    byte bits;
@@ -152,8 +153,8 @@ if(crc_decoded==crc) return true; else return false;
 
 void CONVOLUTION::noise(byte *output,byte nb_noising,byte mode)    //add noise
 {
-    byte n;
-    byte ptr;
+    int n;
+    int ptr;
     byte bits;
 	randomSeed(analogRead(0));
 if (mode==0)                                // noise(6,0) add 6 noise random bit 
@@ -184,10 +185,10 @@ void CONVOLUTION::viterbi(byte* output,byte* history,byte* decoded)             
 int n,m;
 byte dual;
 byte mask;
-byte state_transitions_table[4][4]={{0,4,1,4},  //4 number as x (never used)
-                                    {0,4,1,4},
-                                    {4,0,4,1},
-                                    {4,0,4,1}};
+static byte state_transitions_table[4][4]={{0,4,1,4},  //4 number as x (never used)
+										   {0,4,1,4},
+										   {4,0,4,1},
+										   {4,0,4,1}};
 
    //compute error and history table
     for (n =0; n <2; n ++) for (m =0; m <4; m ++) acc_error[n][m]=0;   //clear acc_error_shift_table
@@ -236,9 +237,9 @@ byte state_transitions_table[4][4]={{0,4,1,4},  //4 number as x (never used)
    }
 }
 
-void CONVOLUTION::compute_error_branch(byte ptr,byte current_state, byte encoded_input,byte* history)
+void CONVOLUTION::compute_error_branch(int ptr,byte current_state, byte encoded_input,byte* history)
 {
-   byte transition[]={0,0,3,2, 3,0,0,2, 2,1,1,3, 1,1,2,3};    //table to find transition and next state for channel A and B
+  static byte transition[]={0,0,3,2, 3,0,0,2, 2,1,1,3, 1,1,2,3};    //table to find transition and next state for channel A and B
    byte encoder_channel_A = transition[current_state *4];
    byte next_state_A = transition[current_state *4 +1];
    byte encoder_channel_B = transition[current_state *4 +2];
@@ -270,15 +271,15 @@ void CONVOLUTION::compute_error_branch(byte ptr,byte current_state, byte encoded
 byte CONVOLUTION::hamming_distance(byte encoder_channel,byte encoded_input)
 {
   
-byte hamming_table[4][4]={{0,1,1,2},        //compute hamming distance by table (more easy)
-                          {1,0,2,1},
-                          {1,2,0,1},
-                          {2,1,1,0}};
+static byte hamming_table[4][4]={{0,1,1,2},        //compute hamming distance by table (more easy)
+								 {1,0,2,1},
+								 {1,2,0,1},
+								 {2,1,1,0}};
 
 return hamming_table[encoder_channel][encoded_input];
 
 //ou  
-//return   (((a>>1)-(b>>1)) ? 1 : 0) + (((a&1)-(b&1)) ? 1 : 0);
+//return   (((encoder_channel>>1)-(encoded_input>>1)) ? 1 : 0) + (((encoder_channel&1)-(encoded_input&1)) ? 1 : 0);
 }
 
 byte CONVOLUTION::set_position(byte value, byte next_state, byte current_state) {    //set state position in byte with & and | mask
