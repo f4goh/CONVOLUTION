@@ -2,7 +2,8 @@
  * CONVOLUTION Arduino library
  * Created 15/05/2015
  * Anthony LE CREN f4goh@orange.fr 
- * Modified
+ * Modified 24/07/2015
+ * fix bug data ptr upper than 32
  * BSD license, all text above must be included in any redistribution
  *
  * Instance :
@@ -47,7 +48,7 @@ class CONVOLUTION
   
   void fcsbit(byte tbyte);
   void compute_crc(byte *array);
-  void compute_error_branch(byte ptr,byte current_state, byte encoded_input,byte* history);
+  void compute_error_branch(int ptr,byte current_state, byte encoded_input,byte* history);
   byte hamming_distance(byte encoder_channel,byte encoded_input);
   byte set_position(byte value, byte next_state, byte current_state);
   
