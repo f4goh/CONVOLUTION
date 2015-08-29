@@ -25,6 +25,8 @@ https://hamprojects.wordpress.com/2015/08/29/gmsk-experiments/
 
 73
 
+Anthony
+
 ```c++
 #include <CONVOLUTION.h>
 #define size_input 8      //input size must be multiple of 8 bytes for interleaving
