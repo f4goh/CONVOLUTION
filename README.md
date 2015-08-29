@@ -19,7 +19,9 @@ To use the CONVOLUTION library:
 
 To use the CONVOLUTION library, see /exemples/Convolution_test.ino.
 
-CMX589 Modem Library  soon...
+Gmsk experiments is already finished, take a look at :
+
+https://hamprojects.wordpress.com/2015/08/29/gmsk-experiments/
 
 73
 
